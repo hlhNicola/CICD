@@ -2,7 +2,7 @@
   "name": "cicd",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.io/hlhNicola/CICD",
+  "homepage": "https://hlhNicola.github.io/CICD",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
