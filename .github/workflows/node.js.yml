@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+      # - name: SonarCloud Scan
+      #   uses: sonarsource/sonarcloud-github-action@master
 
       - name: Install dependencies
         run: npm install
