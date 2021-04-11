@@ -27,9 +27,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # - name: SonarCloud Scan
-      #   uses: sonarsource/sonarcloud-github-action@master
-
       - name: Install dependencies
         run: npm install
 
@@ -54,4 +51,3 @@ jobs:
           user_email: "github-actions[bot]@users.noreply.github.com"
           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
