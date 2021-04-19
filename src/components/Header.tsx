@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default () => {
+export default function Header() {
   const classes = useStyles();
 
   return (
