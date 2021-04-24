@@ -9,7 +9,7 @@ export default function Simulator() {
   
     // For body
     document.body.appendChild(script);
-  })
+  }, [])
  
   return (
   <div style={{padding: "2%"}}>
