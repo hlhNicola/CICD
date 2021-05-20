@@ -1,10 +1,13 @@
-import React, { useEffect} from 'react';
+
 import SearchInput from '../../components/SearchInput';
+import FoodList from '../../components/FoodList';
+
 
 export default function Food() {
   return (
       <>
-        <SearchInput />
+        <SearchInput/>
+        <FoodList />
       </>
  )
 };

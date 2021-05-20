@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -33,6 +33,11 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function SearchInput() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState('')
+  const searchOptions = (value: string) => {
+    dispatch(actions.foodAutoCompleteRequest(value))
+  }
+  
 
   return (
     <Paper component="form" className={classes.root}>
@@ -40,12 +45,13 @@ export default function SearchInput() {
         className={classes.input}
         placeholder="Search Your Meal"
         inputProps={{ 'aria-label': 'search meal ingr' }}
-        onChange={(event: any) => dispatch(actions.foodAutoCompleteRequest(event.target.value))
-        }
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputValue(event.target.value)}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
-        <SearchIcon />
+      <IconButton type="button" className={classes.iconButton} aria-label="search" onClick={() => searchOptions(inputValue)}>
+        <SearchIcon/>
       </IconButton>
     </Paper>
   );
 }
+
+
