@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from 'redux-starter-kit';
 
 export interface foodState {
-  foodInfo: [];
+  foodInfo: any;
   input: string;
   options: string[];
   foodItem: string;
@@ -9,9 +9,9 @@ export interface foodState {
 
 const initialState:foodState = {
   foodInfo: [],
-  input: 'apple',
-  options:['apple'],
-  foodItem: 'apple'
+  input: '',
+  options:[],
+  foodItem: ''
  
 };
 
@@ -27,11 +27,16 @@ const slice = createSlice({
       state.options = action.payload
     },
     fooditemsRequest: (state, action: PayloadAction<string>) => {
-      console.log(1)
       state.foodItem = action.payload
     },
     foodItemsReceived: (state, action: PayloadAction<any>) => {
-      state.foodInfo = action.payload
+      console.log(action.payload)
+      state.foodInfo = action.payload.hints.filter((item: any) => {
+        return item.food.image
+      }).map((item:any) => {
+        item.food.nutrients = {label: item.food.label, ...item.food.nutrients}
+        return item
+      })
     },
     foodApiErrorReceived: (state, action: PayloadAction<any>) => state,
   },

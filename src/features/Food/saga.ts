@@ -20,6 +20,6 @@ function* foodItemRecieved(action: PayloadAction<any>): any {
 }
 
 export default function* watchFood() {
-  // yield takeEvery(FoodActions.foodAutoCompleteRequest.type, foodOptionsRecieved)
+  yield takeEvery(FoodActions.foodAutoCompleteRequest.type, foodOptionsRecieved)
   yield takeEvery(FoodActions.fooditemsRequest.type, foodItemRecieved)
 }

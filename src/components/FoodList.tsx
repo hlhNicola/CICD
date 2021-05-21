@@ -9,7 +9,6 @@ import * as selectors from '../features/Food/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions } from '../features/Food/reducer';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
