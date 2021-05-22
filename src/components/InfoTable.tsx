@@ -14,11 +14,14 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import InfoIcon from '@material-ui/icons/Info';
+import CardMedia from '@material-ui/core/CardMedia';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import { useSelector } from 'react-redux';
 import { getFoodInfo } from '../features/Food/selectors';
 
@@ -72,11 +75,11 @@ interface HeadCell {
 
 const headCells: HeadCell[] = [
   { id: 'Name', numeric: false, disablePadding: true, label: 'Food (per serve)' },
-  { id: 'ENERC_KCAL', numeric: true, disablePadding: false, label: 'ENERC_KCAL' },
-  { id: 'PROCNT', numeric: true, disablePadding: false, label: 'PROCNT' },
-  { id: 'FIBTG', numeric: true, disablePadding: false, label: 'FIBTG' },
-  { id: 'FAT', numeric: true, disablePadding: false, label: 'FAT' },
-  { id: 'CHOCDF', numeric: true, disablePadding: false, label: 'CHOCDF (g)' },
+  { id: 'ENERC_KCAL', numeric: true, disablePadding: false, label: 'ENERC (kcal)' },
+  { id: 'PROCNT', numeric: true, disablePadding: false, label: 'PROCNT (g)' },
+  { id: 'FIBTG', numeric: true, disablePadding: false, label: 'FIBTG (g)' },
+  { id: 'FAT', numeric: true, disablePadding: false, label: 'FAT (g)' },
+  { id: 'CHOCDF', numeric: true, disablePadding: false, label: 'CHOCDF (g)' }
 ];
 
 interface EnhancedTableProps {
@@ -127,6 +130,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell style={{marginRight: -300}}></TableCell>
       </TableRow>
     </TableHead>
   );
@@ -177,19 +181,12 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           Nutrition
         </Typography>
       )}
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
+      {numSelected > 0 ?
+        <Tooltip title="Add to diet plan">
+          <IconButton aria-label="diet plan">
+            <AddCircleIcon />
           </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+        </Tooltip> : null }
     </Toolbar>
   );
 };
@@ -217,6 +214,11 @@ const useStyles = makeStyles((theme: Theme) =>
       top: 20,
       width: 1,
     },
+    card: {
+      maxWidth: 125,
+      zIndex:10,
+      marginRight: -75
+    },
   }),
 );
 
@@ -228,6 +230,7 @@ export default function EnhancedTable() {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
+  const [showCard, setShowCard] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
@@ -261,7 +264,6 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1),
       );
     }
-
     setSelected(newSelected);
   };
 
@@ -333,6 +335,28 @@ export default function EnhancedTable() {
                       <TableCell align="right">{row.FIBTG}</TableCell>
                       <TableCell align="right">{row.FAT}</TableCell>
                       <TableCell align="right">{row.CHOCDF}</TableCell>
+                      <TableCell align="right">
+                        {showCard ? <Card className={classes.card}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt={row.label}
+                              height="140"
+                              image={row.image}
+                              title={row.label}
+                              onMouseLeave={() => setShowCard(!showCard)}
+                            />
+                          </CardActionArea>
+                        </Card> :  
+                        <Tooltip 
+                          title='preview' 
+                          onMouseEnter={() => setShowCard(!showCard)} >
+                          <IconButton 
+                            aria-label="Image">
+                            <InfoIcon />
+                          </IconButton>
+                        </Tooltip>}
+                      </TableCell>
                     </TableRow>
                   );
                 })}

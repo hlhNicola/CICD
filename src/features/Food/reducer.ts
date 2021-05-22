@@ -31,10 +31,17 @@ const slice = createSlice({
     },
     foodItemsReceived: (state, action: PayloadAction<any>) => {
       console.log(action.payload)
+      const map = new Map()
       state.foodInfo = action.payload.hints.filter((item: any) => {
+        if(!map.has(item.food.label)){
+          map.set(item.food.label, 1)
+        }
+        else if(map.has(item.food.label)){
+          return false
+        }
         return item.food.image
       }).map((item:any) => {
-        item.food.nutrients = {label: item.food.label, ...item.food.nutrients}
+        item.food.nutrients = {image: item.food.image, label: item.food.label, ...item.food.nutrients}
         return item
       })
     },

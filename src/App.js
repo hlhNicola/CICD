@@ -9,9 +9,8 @@ const store = createStore();
 
 function App() {
   return (
-    <Provider store={store}>
-       
-      {/* <Header /> */}
+    <Provider store={store}> 
+      <Header />
       <Food />
       {/* <Simulator /> */}
 
