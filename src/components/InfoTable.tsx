@@ -22,8 +22,9 @@ import InfoIcon from '@material-ui/icons/Info';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getFoodInfo } from '../features/Food/selectors';
+import { actions } from '../features/Intake/reducer';
 
 interface Data {
     Name: string
@@ -57,7 +58,7 @@ function getComparator<Key extends keyof any>(
 
 function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el: any, index) => [el.food.nutrients, index] as [T, number]);
-  console.log(stabilizedThis)
+
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
@@ -130,7 +131,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell style={{marginRight: -300}}></TableCell>
+        <TableCell></TableCell>
       </TableRow>
     </TableHead>
   );
@@ -162,9 +163,15 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+const EnhancedTableToolbar = (props: any) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
+  const { numSelected, selected } = props;
+  const dispatch = useDispatch();
+
+  const handleAddItem = () => {
+    console.log(1)
+    dispatch(actions.addItem(selected))
+  };
 
   return (
     <Toolbar
@@ -183,7 +190,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       )}
       {numSelected > 0 ?
         <Tooltip title="Add to diet plan">
-          <IconButton aria-label="diet plan">
+          <IconButton aria-label="diet plan" onClick={ () => handleAddItem() }>
             <AddCircleIcon />
           </IconButton>
         </Tooltip> : null }
@@ -216,8 +223,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       maxWidth: 125,
-      zIndex:10,
-      marginRight: -75
     },
   }),
 );
@@ -227,7 +232,7 @@ export default function EnhancedTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('ENERC_KCAL');
-  const [selected, setSelected] = React.useState<string[]>([]);
+  const [selected, setSelected] = React.useState<any[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [showCard, setShowCard] = React.useState(false);
@@ -241,19 +246,25 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = foodData.map((n: any) => n.food.label);
+      const newSelecteds = foodData.map((n: any) => n.food.nutrients);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: string[] = [];
+  const handleClick = (event: React.MouseEvent<unknown>, info: any) => {
+    let selectedIndex = -1 
+    selected.forEach((item, index) => {
+      if(item.label === info.label){
+        selectedIndex = index
+        return 
+      }
+    });
+    let newSelected: any[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, info);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -280,14 +291,23 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (info: any) => {
+    let selectedIndex = -1 
+    selected.forEach((item, index) => {
+      if(item.label === info.label){
+        selectedIndex = index
+        return
+      }
+    });
+    return selectedIndex !== -1
+  }
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, foodData.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
         <TableContainer>
           <Table
             className={classes.table}
@@ -308,13 +328,13 @@ export default function EnhancedTable() {
               {stableSort(foodData, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: any, index) => {
-                  const isItemSelected = isSelected(row.label);
+                  const isItemSelected = isSelected(row);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.label)}
+                      onClick={(event: any) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}

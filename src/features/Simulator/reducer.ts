@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from 'redux-starter-kit';
+export interface simulatorState {
+  currentWeight: number;
+  targetWeight: number;
+}
 
-const initialState = {
-  data: []
- 
+const initialState:simulatorState = {
+  currentWeight: 0,
+  targetWeight: 0,
 };
+
 
 
 const slice = createSlice({

@@ -5,14 +5,19 @@ export interface foodState {
   input: string;
   options: string[];
   foodItem: string;
+  currentWeight: number;
+  targetWeight: number;
+  calorie: number;
 }
 
 const initialState:foodState = {
   foodInfo: [],
   input: '',
   options:[],
-  foodItem: ''
- 
+  foodItem: '',
+  currentWeight: 0,
+  targetWeight: 0,
+  calorie: 0
 };
 
 
@@ -41,7 +46,7 @@ const slice = createSlice({
         }
         return item.food.image
       }).map((item:any) => {
-        item.food.nutrients = {image: item.food.image, label: item.food.label, ...item.food.nutrients}
+        item.food.nutrients = {image: item.food.image, label: item.food.label, foodId: item.food.foodId, ...item.food.nutrients}
         return item
       })
     },
