@@ -7,13 +7,13 @@ import { getSelectedItems } from './selectors';
 
 export default function Intake() {
   const intake = useSelector(getSelectedItems)
+  
   const cards = intake.length > 0 ? (intake.map((item: any, index: number) => {
-    console.log(item)
-      return <Card food={item} key={index}/>
+      return <Card food={item} key={index} foodId={index} style={{minWidth: "100px"}}/>
     })):null
   
   return (
-      <div style={{display: 'flex', justifyContent:'space-around'}}>
+      <div style={{display: 'flex', justifyContent:'space-around', flexWrap: "wrap"}}>
         {cards}
       </div>
  )

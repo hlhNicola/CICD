@@ -19,7 +19,8 @@ const slice = createSlice({
       state.data = state.data.concat(action.payload)
     },
     reduceItem: (state, action: PayloadAction<string>) => {
-        state.data = action.payload
+      console.log('index', action.payload)
+        state.data.splice(action.payload, 1)
       },
     orderApiErrorReceived: (state, action: PayloadAction<any>) => state,
   },

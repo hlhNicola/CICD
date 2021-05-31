@@ -7,7 +7,8 @@ import SearchInput from '../components/SearchInput';
 
 const useStyles = makeStyles({
   root: {
-    background: '#FFE2EC'
+    background: '#FFE2EC',
+    width: "100%"
   },
   grow: {
     flexGrow: 1,
