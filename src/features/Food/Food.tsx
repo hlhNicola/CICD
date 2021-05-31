@@ -10,8 +10,9 @@ export default function Food() {
   
   return (
       <div>
-        <SearchInput/>
-        <FoodList />
+        <div style={{display: 'flex', justifyContent:'center', margin: '50px'}}>
+        <FoodList/>
+        </div>
         {foodData.length > 0 ? <InforTable /> : null}
       </div>
  )

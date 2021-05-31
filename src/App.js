@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Simulator from './features/Simulator/Simulator';
 import Food from './features/Food/Food';
+import Intake from './features/Intake/Intake'
 import createStore from './store';
 import { Provider } from 'react-redux';
 
@@ -12,6 +13,7 @@ function App() {
     <Provider store={store}> 
       <Header />
       <Food />
+      <Intake />
       {/* <Simulator /> */}
 
     </Provider>

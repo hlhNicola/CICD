@@ -16,8 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<any>) => {
-      console.log(action.payload)
-      state.data = action.payload
+      state.data = state.data.concat(action.payload)
     },
     reduceItem: (state, action: PayloadAction<string>) => {
         state.data = action.payload

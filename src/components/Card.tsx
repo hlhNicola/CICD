@@ -11,23 +11,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgCard({food}: any) {
+export default function ImgCard({food}:any) {
   const classes = useStyles();
-  if(food){
-    console.log('1',food.label)
+  // if(food){
+  //   console.log('1',food)
 
-  }
+  // }
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Apple"
+          alt={food.label}
           height="140"
-          image='s'
+          image={food.image}
           title="Apple"
         />
-        {food}
+        {food.label}
       </CardActionArea>
     </Card>
   );

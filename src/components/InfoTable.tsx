@@ -169,7 +169,6 @@ const EnhancedTableToolbar = (props: any) => {
   const dispatch = useDispatch();
 
   const handleAddItem = () => {
-    console.log(1)
     dispatch(actions.addItem(selected))
   };
 

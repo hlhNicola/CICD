@@ -50,7 +50,7 @@ export default function FoodList() {
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
+                    <ListSubheader component="div" id="nested-list-subheader" style={{background: '#FFE2EC', color: '#F60057'}}>
                     Do you mean one of following ingredients ?
                     </ListSubheader>
                 }
