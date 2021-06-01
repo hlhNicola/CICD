@@ -16,7 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     simulatorDataRecevied: (state, action: PayloadAction<any>) => {
-      
+      state.targetWeight = action.payload
     },
     simulatorApiErrorReceived: (state, action: PayloadAction<any>) => state,
   },

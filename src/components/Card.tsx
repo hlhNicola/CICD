@@ -47,7 +47,7 @@ export default function ImgCard(props: any) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={() => removeItem()}>
+        <Button size="small" variant="contained" color="primary" onClick={() => removeItem()}>
           Remove
         </Button>
       </CardActions>

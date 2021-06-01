@@ -37,10 +37,13 @@ export default function SearchInput() {
   const searchOptions = (value: string) => {
     dispatch(actions.foodAutoCompleteRequest(value))
   }
+  const submitHandler = (e: any) => {
+    e.preventDefault()
+  }
   
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.root} onSubmit={submitHandler}>
       <InputBase
         className={classes.input}
         placeholder="Search Your Meal"

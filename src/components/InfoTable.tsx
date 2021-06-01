@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -236,6 +236,10 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [showCard, setShowCard] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  useEffect(() => {
+    setSelected([])
+  }, foodData)
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
