@@ -1,18 +1,14 @@
-import React, { useEffect} from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getBeforeImg, getAfterImg} from './selectors';
 
 export default function Simulator() {
-  
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://modelmydiet.com/assets/js/widget_loader_v8.js";
-  
-    // For body
-    document.body.appendChild(script);
-  }, [])
+  const beforeImg = useSelector(getBeforeImg)
+  const afterImg = useSelector(getAfterImg)
  
   return (
   <div style={{padding: "2%"}}>
-    <div className="mmd-model-widget" data-key="Mvc8a0UyzQaO7m_Vkwp3yg" data-gender="women"></div>
+    <img src={ beforeImg } alt="current" />
+    <img src={ afterImg } alt="goal" />
   </div>)
 };

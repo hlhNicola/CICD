@@ -35,7 +35,6 @@ const slice = createSlice({
       state.foodItem = action.payload
     },
     foodItemsReceived: (state, action: PayloadAction<any>) => {
-      console.log(action.payload)
       const map = new Map()
       state.foodInfo = action.payload.hints.filter((item: any) => {
         if(!map.has(item.food.label)){

@@ -7,6 +7,7 @@ import createStore from './store';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import StartSurvey from './features/Survey/survey';
 
 const store = createStore();
 
@@ -14,10 +15,11 @@ function App() {
   return (
     <Provider store={store}> 
       <Header />
+      <StartSurvey></StartSurvey>
       <Food />
       <ToastContainer />
       <Intake />
-      {/* <Simulator /> */}
+      <Simulator />
 
     </Provider>
   );

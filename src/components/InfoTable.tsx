@@ -159,10 +159,6 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
-
 const EnhancedTableToolbar = (props: any) => {
   const classes = useToolbarStyles();
   const { numSelected, selected } = props;
@@ -239,7 +235,7 @@ export default function EnhancedTable() {
 
   useEffect(() => {
     setSelected([])
-  }, foodData)
+  }, [foodData])
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';

@@ -22,7 +22,7 @@ export const getFooditems = (ingr: string) => {
     })
 }
 
-export const postImages = (ingr: string) => {
+export const postImages = (targetWeight: number) => {
     return axios.post(`http://sandbox.modelmydiet.com/women`,{
         "api_key": process.env.REACT_APP_SIMULATOR_APP_KEY,
         "units":"imperial",
@@ -46,7 +46,7 @@ export const postImages = (ingr: string) => {
                 "weight":"190"
             },
             "goal" : {
-                "weight":"130"
+                "weight": targetWeight
             }
         }
     })
