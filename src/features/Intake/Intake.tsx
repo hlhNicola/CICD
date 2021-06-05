@@ -10,6 +10,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { getSelectedItems, getTotalCalories } from './selectors';
 import { actions } from  './reducer';
 import { actions as simulatorActions } from '../Simulator/reducer';
+import { Link } from 'react-router-dom';
 
 export default function Intake() {
   const dispatch = useDispatch()
@@ -54,7 +55,7 @@ export default function Intake() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="large" variant="contained" color="secondary" onClick={startSimulation}>
+        <Button component={Link} to={'/simulator'} size="large" variant="contained" color="secondary" onClick={startSimulation}>
           Run Simulation
         </Button>
       </CardActions>

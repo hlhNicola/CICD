@@ -4,6 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchInput from '../components/SearchInput';
+import { useSelector } from 'react-redux';
+import { getSurveyStatus } from '../features/Survey/selectors';
 
 const useStyles = makeStyles({
   root: {
@@ -18,6 +20,7 @@ const useStyles = makeStyles({
 
 export default function Header() {
   const classes = useStyles();
+  const status = useSelector(getSurveyStatus)
 
   return (
     <AppBar position="static" className={classes.root}>
@@ -25,7 +28,7 @@ export default function Header() {
         <Typography variant="h6" color="inherit" className={classes.grow}>
           Calorie Simulator
         </Typography>
-        <SearchInput/>
+        {status ? <SearchInput/> : null}
       </Toolbar>
     </AppBar>
   );
