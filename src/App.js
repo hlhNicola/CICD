@@ -16,11 +16,11 @@ function App() {
       <Router>
         <ToastContainer />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/CICD">
             <Header />
             <Food />
           </Route>
-          <Route exact path="/simulator">
+          <Route exact path="/CICD/simulator">
             <Simulator />
           </Route>
         </Switch>
