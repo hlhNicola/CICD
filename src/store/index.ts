@@ -8,7 +8,7 @@ import reducers from './reducer';
 const reducer = combineReducers(reducers);
 export type IState = ReturnType<typeof reducer>;
 
-export default () => {
+export default function mainStore(){
   const composeEnhancers = composeWithDevTools({});
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = applyMiddleware(sagaMiddleware);
