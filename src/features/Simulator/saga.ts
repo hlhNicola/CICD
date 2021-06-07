@@ -4,11 +4,14 @@ import { actions as SimulatorActions } from './reducer';
 import { PayloadAction } from 'redux-starter-kit';
 import { toast } from 'react-toastify';
 import * as selectors from './selectors';
+import {getSurveyAge, getSurveyWeight} from '../Survey/selectors';
 
 function* simulatorDataRecieved(action: PayloadAction<any>): any {
+    const currentWeight = yield select(getSurveyWeight);
+    const age = yield select(getSurveyAge);
     const targetWeight = yield select(selectors.getTargetWeight);
     try {
-        const imageData = yield call(postImages, targetWeight)
+        const imageData = yield call(postImages, currentWeight, age, targetWeight)
         yield put(SimulatorActions.imageDataReceived(imageData.data))
     }
     catch(error) {

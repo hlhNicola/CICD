@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { useSelector,useDispatch } from 'react-redux';
 import { getSelectedItems, getTotalCalories } from './selectors';
+import { getSurveyAge, getSurveyWeight }  from '../Survey/selectors';
 import { actions } from  './reducer';
 import { actions as simulatorActions } from '../Simulator/reducer';
 import { Link } from 'react-router-dom';
@@ -16,10 +17,12 @@ export default function Intake() {
   const dispatch = useDispatch()
   const intake = useSelector(getSelectedItems)
   const calorie = useSelector(getTotalCalories)
+  const age = useSelector(getSurveyAge)
+  const currentWeight = useSelector(getSurveyWeight)
 
   const dispatchSimulationError = () => {
     let errorMessage = ''
-    if(calorie > 3000){
+    if(calorie > 4500){
       errorMessage = 'It is too much for an adult daily intake, please remove some food'
     }
     else if(calorie < 1900){
@@ -29,12 +32,12 @@ export default function Intake() {
   }
 
   const startSimulation = () => {
-    if (calorie > 4000 || calorie < 1500){
+    if (calorie > 4500 || calorie < 1900){
       dispatchSimulationError()
     }
     else {
-      const weight = Math.sqrt((calorie - 752.901)/0.028) - 167.074
-      dispatch(simulatorActions.simulatorDataRecevied(weight))
+      const targetWeight = Math.sqrt((calorie - 752.901)/0.028) - 167.074
+      dispatch(simulatorActions.simulatorDataRecevied(targetWeight))
     }
   }
   

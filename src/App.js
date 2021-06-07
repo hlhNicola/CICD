@@ -20,7 +20,7 @@ function App() {
             <Header />
             <Food />
           </Route>
-          <Route exact path="/CICD/simulator">
+          <Route exact path="/simulator">
             <Simulator />
           </Route>
         </Switch>

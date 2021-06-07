@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+import { getSurveyAge, getSurveyWeight} from '../Survey/selectors'
 
 export const getFoodOptions = (inputIngr: string) => {
     return axios.get(`https://api.edamam.com/auto-complete`,{
@@ -22,7 +24,9 @@ export const getFooditems = (ingr: string) => {
     })
 }
 
-export const postImages = (targetWeight: number) => {
+// Capital name the function for using useSelector hook
+export const postImages = (currentWeight:number, age: string, targetWeight: number) => {
+
     return axios.post(`http://sandbox.modelmydiet.com/women`,{
         "api_key": process.env.REACT_APP_SIMULATOR_APP_KEY,
         "units":"imperial",
@@ -30,7 +34,7 @@ export const postImages = (targetWeight: number) => {
         "shape":"hourglass",
         "bust":"small",
         "ethnicity":"CA01",
-        "age":"AG20",
+        "age": age,
         "eyes":"EYR",
         "nose":"NOS",
         "lips":"LPT",
@@ -43,7 +47,7 @@ export const postImages = (targetWeight: number) => {
         "view":"front",
         "delta": {
             "current":{
-                "weight":"190"
+                "weight": currentWeight
             },
             "goal" : {
                 "weight": targetWeight
