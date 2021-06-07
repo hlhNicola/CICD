@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { useSelector,useDispatch } from 'react-redux';
 import { getSelectedItems, getTotalCalories } from './selectors';
-import { getSurveyAge, getSurveyWeight }  from '../Survey/selectors';
 import { actions } from  './reducer';
 import { actions as simulatorActions } from '../Simulator/reducer';
 import { Link } from 'react-router-dom';
@@ -17,8 +16,7 @@ export default function Intake() {
   const dispatch = useDispatch()
   const intake = useSelector(getSelectedItems)
   const calorie = useSelector(getTotalCalories)
-  const age = useSelector(getSurveyAge)
-  const currentWeight = useSelector(getSurveyWeight)
+  const valid = (calorie < 4500) && (calorie > 1900) ? true : false
 
   const dispatchSimulationError = () => {
     let errorMessage = ''
@@ -58,9 +56,12 @@ export default function Intake() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button component={Link} to={'/simulator'} size="large" variant="contained" color="secondary" onClick={startSimulation}>
+        {valid ? <Button component={Link} to={'/simulator'} size="large" variant="contained" color="secondary" onClick={startSimulation}>
           Run Simulation
-        </Button>
+        </Button> : <Button size="large" variant="contained" color="secondary" onClick={startSimulation}>
+          Run Simulation
+        </Button>}
+        
       </CardActions>
     </Card>
  )

@@ -1,6 +1,4 @@
 import axios from 'axios'
-import { useSelector } from 'react-redux'
-import { getSurveyAge, getSurveyWeight} from '../Survey/selectors'
 
 export const getFoodOptions = (inputIngr: string) => {
     return axios.get(`https://api.edamam.com/auto-complete`,{
