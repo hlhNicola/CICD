@@ -1,4 +1,4 @@
-import { postImages } from '../Food/api';
+import { postImages } from '../../services/api';
 import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { actions as SimulatorActions } from './reducer';
 import { PayloadAction } from 'redux-starter-kit';

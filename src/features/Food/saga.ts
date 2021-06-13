@@ -1,5 +1,5 @@
 import { takeEvery, put, call, select } from 'redux-saga/effects';
-import { getFoodOptions, getFooditems } from './api'
+import { getFoodOptions, getFooditems } from '../../services/api'
 import { toast } from 'react-toastify';
 import * as selectors from './selectors';
 import { PayloadAction } from 'redux-starter-kit';
