@@ -29,15 +29,12 @@ export default function FoodList() {
     dispatch(actions.fooditemsRequest(foodItem))
   }
 
-
   const listItems = options.map((item, index) => {
     return  (
         <ListItem key={index} button>
             <ListItemText primary={item} onClick={() => getFooditems(item) }/>
         </ListItem>)
   })
-  
-  
           
   if(options.length === 0){
       return null
@@ -58,7 +55,6 @@ export default function FoodList() {
             {listItems}
             </List>
         </Paper>
-        
       );
   }
 }

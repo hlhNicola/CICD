@@ -3,8 +3,6 @@ import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import { useDispatch } from 'react-redux';
 import { actions } from './reducer';
-// import { Link } from 'react-router-dom';
-
  
 export default function StartSurvey() {
  //Define Survey JSON
@@ -46,9 +44,6 @@ export default function StartSurvey() {
   //Write survey results into database
   dispatch(actions.surveyCompleted(survey.data))
  }
-
  var model = new Survey.Model(json);
-
   return (<Survey.Survey model={model} onComplete={onComplete}/>);
- 
 } 

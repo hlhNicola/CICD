@@ -5,8 +5,6 @@ import * as selectors from './selectors';
 import { PayloadAction } from 'redux-starter-kit';
 import { actions as FoodActions } from './reducer';
 
-
-
 function* foodOptionsRecieved(action: PayloadAction<any>): any {
   const optionInput = yield select(selectors.getOptionInput);
   try {

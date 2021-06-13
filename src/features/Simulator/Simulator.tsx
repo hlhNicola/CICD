@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { getBeforeImg, getAfterImg} from './selectors';
 import { CSSTransition } from 'react-transition-group';
@@ -22,7 +22,6 @@ export default function Simulator() {
           onClick={() => setTargetImg(true)}
         />
       </Tooltip>
-      
     ) }
     <CSSTransition
         in={showTargetImg}
@@ -41,6 +40,5 @@ export default function Simulator() {
         />
       </Tooltip>
       </CSSTransition>
-   
   </div>)
 };

@@ -1,4 +1,3 @@
-
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -61,7 +60,6 @@ export default function Intake() {
         </Button> : <Button size="large" variant="contained" color="secondary" onClick={startSimulation}>
           Run Simulation
         </Button>}
-        
       </CardActions>
     </Card>
  )

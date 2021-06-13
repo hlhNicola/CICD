@@ -20,7 +20,6 @@ const initialState:foodState = {
   calorie: 0
 };
 
-
 const slice = createSlice({
   name: 'food',
   initialState,

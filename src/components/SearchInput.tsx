@@ -7,7 +7,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch } from 'react-redux';
 import { actions } from '../features/Food/reducer';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -41,7 +40,6 @@ export default function SearchInput() {
     e.preventDefault()
   }
   
-
   return (
     <Paper component="form" className={classes.root} onSubmit={submitHandler}>
       <InputBase
