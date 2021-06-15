@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// get drop down food options 
 export const getFoodOptions = (inputIngr: string) => {
     return axios.get(`https://api.edamam.com/auto-complete`,{
         params: {
@@ -12,6 +13,7 @@ export const getFoodOptions = (inputIngr: string) => {
     })
 }
 
+// get food items in table
 export const getFooditems = (ingr: string) => {
     return axios.get(`/api/food-database/v2/parser`,{
         params: {
@@ -22,7 +24,8 @@ export const getFooditems = (ingr: string) => {
     })
 }
 
-// Capital name the function for using useSelector hook
+
+// generate simulation images
 export const postImages = (currentWeight:number, age: string, targetWeight: number, bust='small', shape='hourglass') => {
 
     return axios.post(`http://sandbox.modelmydiet.com/women`,{
@@ -52,4 +55,9 @@ export const postImages = (currentWeight:number, age: string, targetWeight: numb
             }
         }
     })
+}
+
+// store input to database
+export const postDietData = (data: any) => {
+    return axios.post(`http://localhost:8000`, data)
 }

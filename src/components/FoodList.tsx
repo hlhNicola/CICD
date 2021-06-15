@@ -37,7 +37,7 @@ export default function FoodList() {
   })
           
   if(options.length === 0){
-      return <div>Please search your meal first</div>
+      return <div>Please search a food</div>
   }
   else{
     return (

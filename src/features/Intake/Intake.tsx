@@ -35,6 +35,7 @@ export default function Intake() {
     else {
       const targetWeight = Math.sqrt((calorie - 752.901)/0.028) - 167.074
       dispatch(simulatorActions.simulatorDataRecevied(targetWeight))
+      dispatch(simulatorActions.stateDispatch())
     }
   }
   

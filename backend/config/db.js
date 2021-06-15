@@ -1,1 +1,1 @@
-module.exports = {  url : `mongodb+srv://lihong:q123aqwezasd@cluster0.ashrq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`};
+module.exports = {  url : `mongodb+srv://Lihong:aXEBJ4BkYPZH2Ocu@cluster0.9otnn.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`};

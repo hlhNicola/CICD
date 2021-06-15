@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors');
-const db = require("./app/models");
+const db = require("./app/routes/model/index");
 
 const app = express();
 app.disable("x-powered-by");
@@ -25,6 +25,17 @@ let corsOptions = {
       console.log("Cannot connect to the database!", err);
       process.exit();
     });
+  
+    app.post('/', (req, res) => {
+      var myData = new Diet(req.body);
+      myData.save()
+        .then(item => {
+          res.send("item saved to database");
+        })
+        .catch(err => {
+          res.status(400).send("unable to save to database");
+        });
+    })
 
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));

@@ -18,6 +18,8 @@ const slice = createSlice({
     simulatorDataRecevied: (state, action: PayloadAction<any>) => {
       state.targetWeight = action.payload
     },
+    stateDispatch: (state, action: PayloadAction<any>) => {
+    },
     imageDataReceived:  (state, action: PayloadAction<any>) => {
       state.beforeImage = action.payload.current
       state.afterImage = action.payload.goal
