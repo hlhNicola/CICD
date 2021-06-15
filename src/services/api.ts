@@ -23,14 +23,14 @@ export const getFooditems = (ingr: string) => {
 }
 
 // Capital name the function for using useSelector hook
-export const postImages = (currentWeight:number, age: string, targetWeight: number) => {
+export const postImages = (currentWeight:number, age: string, targetWeight: number, bust='small', shape='hourglass') => {
 
     return axios.post(`http://sandbox.modelmydiet.com/women`,{
         "api_key": process.env.REACT_APP_SIMULATOR_APP_KEY,
         "units":"imperial",
         "height":"65",
-        "shape":"hourglass",
-        "bust":"small",
+        "shape": shape,
+        "bust": bust,
         "ethnicity":"CA01",
         "age": age,
         "eyes":"EYR",
