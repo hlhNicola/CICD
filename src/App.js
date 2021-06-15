@@ -12,13 +12,13 @@ const store = createStore();
 
 function App() {
   return (
-    <Provider store={store}> 
+    <Provider store={store} >
       <Router>
         <ToastContainer />
         <Switch>
           <Route exact path="/CICD">
             <Header />
-            <Food />
+            <Food/>
           </Route>
           <Route exact path="/simulator">
             <Simulator />
@@ -26,6 +26,7 @@ function App() {
         </Switch>
       </Router>
     </Provider>
+    
   );
 }
 

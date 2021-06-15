@@ -12,7 +12,6 @@ const initialState:surveyState = {
  weight: 0
 };
 
-
 const slice = createSlice({
   name: 'survey',
   initialState,

@@ -36,6 +36,29 @@ export default function StartSurvey() {
       }
   ]
     },
+    {
+      type: "dropdown",
+      name: "shape",
+      title: "Please select your body shape",
+      isRequired: false,
+      colCount: 0,
+      choices: [
+          "Apple",
+          "Pear",
+          "Hourglass",
+      ]
+    },
+    {
+      type: "dropdown",
+      name: "bust",
+      title: "Please select your bust",
+      isRequired: false,
+      colCount: 0,
+      choices: [
+          "Small-Medium",
+          "Medium-Large",
+      ]
+    }
   ]
  };
 
@@ -45,5 +68,11 @@ export default function StartSurvey() {
   dispatch(actions.surveyCompleted(survey.data))
  }
  var model = new Survey.Model(json);
-  return (<Survey.Survey model={model} onComplete={onComplete}/>);
+  return (
+    <div >
+      <div style={{background: '#1AB394', height: '100px', marginTop: '-200px'}} />
+        <Survey.Survey model={model} onComplete={onComplete} />
+      <div style={{background: '#1AB394', height: '280px'}} />
+  </div>
+  );
 } 

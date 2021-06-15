@@ -32,7 +32,6 @@ describe('getFoodOptions', () => {
             "black bean burger",
             "tom cat burger bun"
         ]);
-   
     });
    
     it('fetches erroneously hint from food API', async () => {
