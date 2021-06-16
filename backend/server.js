@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors');
 const db = require("./model/index");
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 
 const app = express();
 app.disable("x-powered-by");
