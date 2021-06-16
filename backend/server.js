@@ -8,7 +8,11 @@ const app = express();
 app.disable("x-powered-by");
 const port = 8000;
 
-  app.use(cors());
+
+  let corsOptions = {
+    origin: '*' // Sensitive
+  };
+  app.use(cors(corsOptions));
   
   // Configuring body parser middleware
   app.use(express.urlencoded({ extended: false }));
