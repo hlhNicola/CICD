@@ -59,5 +59,5 @@ export const postImages = (currentWeight:number, age: string, targetWeight: numb
 
 // store input to database
 export const postDietData = (data: any) => {
-    return axios.post(`http://localhost:8000`, data)
+    return axios.post(`http://localhost:8000`,  {data})
 }

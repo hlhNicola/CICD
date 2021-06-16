@@ -1,18 +1,19 @@
 const express = require('express')
 const cors = require('cors');
-const db = require("./app/routes/model/index");
+const db = require("./model/index");
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.disable("x-powered-by");
 const port = 8000;
-let corsOptions = {
-    origin: 'localhost:3000' // Compliant
-  };
-  app.use(cors(corsOptions));
+
+  app.use(cors());
   
   // Configuring body parser middleware
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+
   db.mongoose
     .connect(db.url, {
       useNewUrlParser: true,
@@ -25,9 +26,18 @@ let corsOptions = {
       console.log("Cannot connect to the database!", err);
       process.exit();
     });
+
+    const nameSchema = new mongoose.Schema({
+      data: Object
+    });
+    const Diet = mongoose.model("Diet", nameSchema)
   
+    app.get("/", (req, res) => {
+      res.send("Hello World");
+      });
+
     app.post('/', (req, res) => {
-      var myData = new Diet(req.body);
+      var myData = new Diet(res.body);
       myData.save()
         .then(item => {
           res.send("item saved to database");

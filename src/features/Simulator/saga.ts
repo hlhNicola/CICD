@@ -23,6 +23,7 @@ function* simulatorDataRecieved(action: PayloadAction<any>): any {
     const stateData = yield select(selectors.getState);
    
     try {
+      console.log('1', stateData)
         yield call(postDietData, stateData)
     }
     catch(error) {
@@ -36,6 +37,6 @@ function* apiErrorReceived(action: PayloadAction<any>) {
 
 export default function* watchSimulator() {
     yield takeEvery(SimulatorActions.simulatorDataRecevied.type, simulatorDataRecieved);
-    yield takeEvery(SimulatorActions.stateDispatch.type, simulatorDataRecieved);
+    yield takeEvery(SimulatorActions.stateDispatch.type, stateDataDispatch);
     yield takeEvery(SimulatorActions.simulatorApiErrorReceived.type, apiErrorReceived);
   }

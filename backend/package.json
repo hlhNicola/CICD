@@ -4,6 +4,7 @@
   "description": "calorie",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "npm test"
   },
   "repository": {
