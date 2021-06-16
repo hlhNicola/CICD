@@ -26,7 +26,7 @@ export default function Header() {
     <AppBar position="static" className={classes.root}>
       <Toolbar>
         <Typography variant="h6" color="inherit" className={classes.grow}>
-          Calorie Simulator （only for female by now)
+          Calorie Simulator （only for female by now) hellp world
         </Typography>
         {status ? <SearchInput/> : null}
       </Toolbar>
