@@ -9,7 +9,7 @@ const port = 8000;
 
 
   let corsOptions = {
-    origin: '*' // Sensitive
+    origin: 'localhost:3000' // Sensitive
   };
   app.use(cors(corsOptions));
   
